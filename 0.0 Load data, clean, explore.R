@@ -37,10 +37,12 @@ ggplot(rf_data_long, aes(x = Year, y = Catch, group = Division, colour = Divisio
 ?geom_bar
 
 ## 0.6 Visualize redfish catch from 1953 - 2015 in all divisions minus "Total"
+# Filter out "Total catch"
 rf_data_long_noT <- rf_data_long %>% 
   
-  filter(Division != "Total") %>% 
+  filter(Division != "Total")
 
+# Visualize
 ggplot(rf_data_long_noT, aes(x = Year, y = Catch, fill = Division, colour = Division)) +
   geom_bar(stat = "identity", width = 0.4) +
   scale_x_discrete(breaks = seq(1953, 2015, 5)) +
@@ -48,3 +50,21 @@ ggplot(rf_data_long_noT, aes(x = Year, y = Catch, fill = Division, colour = Divi
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90))
 
+# Plot only data from 1995 - 2015
+rf_data_95 <- rf_data_long_noT %>% 
+  
+  filter(Year == 1995:2015)
+
+# Get "Total catch" data from 1995 - 2015
+rf_data_95_tot <- rf_data_long %>% 
+  
+  filter(Division == "Total",
+         Year == 1995:2015)
+
+ggplot(rf_data_95, mapping = aes(x = Year, y = Catch, fill = Division, colour = Division)) +
+  geom_bar(stat = "identity", width = 0.4) +
+  geom_point(rf_data_95_tot, mapping = aes(x = Year, y = Catch)) +
+  scale_y_continuous(name = "Redfish catch (t)", expand = c(0, 0)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90))
+  
