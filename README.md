@@ -72,7 +72,7 @@ SpeciesID |	SpeciesCode	| ScieName | NameUK |	NameFR | NameSP|
 19	| SWO	| Xiphias gladius	| Swordfish	| Espadon	| Pez espada |  
 
 ### Stocks  
-The stocks or managment units for each species. 
+The stocks or managment units for each species. An "X" indicates that a species is present in a given management unit.  
 
 Stock |ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
 ---|---|---|---|---|---|---|---|---|---|  
