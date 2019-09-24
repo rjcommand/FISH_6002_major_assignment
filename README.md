@@ -5,9 +5,6 @@ date: "24/09/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Major project folder structure  
   
