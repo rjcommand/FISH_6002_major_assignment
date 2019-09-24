@@ -13,7 +13,7 @@ FISH_6002_major_assignment
 |  
 | - `README.md`  # You’re reading it! Metadata for FISH 6002 Major Assignment
 |  
-| - `data/`  # Folder where raw data files can be found; these are not edited once created
+| - `data/`  # Folder where raw data files can be found; these are not edited once created  
 |      +- `cdis5016-all9sp.csv`  # Dataset containing catch (t) retrieved from ICCAT website (see below)
 |  
 | - `scr/`  # Folder where all scripts to load, clean, analyze, etc. data can be found  
@@ -27,6 +27,7 @@ FISH_6002_major_assignment
 |      +- `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
 ## Metadata for `cdis5016-all9sp.csv` file
+This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas)
 Field | Type | Description | Auxillary table*
 ------|------|-------------|----------------
 SpeciesCode | string |ICCAT species code |Species
