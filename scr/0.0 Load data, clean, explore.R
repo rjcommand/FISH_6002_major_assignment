@@ -3,7 +3,7 @@
 #### Started on Sept 11, 2019
 
 ## 0.1 Load in data and view
-rf_data <- read.csv("Redfish_data.csv", header = TRUE)
+rf_data <- read.csv("data/Redfish_data.csv", header = TRUE)
 View(rf_data)
 str(rf_data)
 
@@ -14,6 +14,7 @@ library(ggplot2)
 library(tidyr)
 
 ## 0.3 Visualize Total redfish catch from 1953 - 2015
+png(file = "figs/Total redfish catch from 1953 - 2015.png")
 ggplot(rf_data, aes(x = Year, y = Total, group = 1)) +
   geom_point() + 
   geom_line() +
@@ -21,7 +22,7 @@ ggplot(rf_data, aes(x = Year, y = Total, group = 1)) +
   scale_y_continuous(name = "Total redfish catch (t)", breaks = seq(0, 150000, 20000)) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
+dev.off()
 ## 0.4 Convert dataframe to long-form
 rf_data_long <- gather(rf_data, Division, Catch, X4R:Total, factor_key = TRUE)
 
