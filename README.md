@@ -28,22 +28,23 @@ FISH_6002_major_assignment
 
 ## Metadata for `cdis5016-all9sp.csv` file
 This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas)  
-Field | Type | Description | Auxillary table*
-------|------|-------------|----------------
-SpeciesCode | string |ICCAT species code |Species
-YearC | integer | Calendar Year |
-Decade | integer | Decade (natural; e.g. 2000 to 2009) |
-FlagName | string | ICCAT Flag Name Flags |
-FleetCode | string | ICCAT | Fleet code | Fleets
-Stock | string | Species related stock or management unit |
-GearGrp | string | Gear group |
-SchoolType | string | Type of fishing operation (PS only) | School types
-Trimester | string | Time strata (trimester 1, 2, 3, 4) |
-QuadID | string | ICCAT quadrant ICCAT | Quadrants
-Lat5 | integer | Latitude of a 5x5 square | 
-Lon5 | integer | Longitude of a 5x5 square |
-yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 square |
-xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
+
+Field | Type | Description | Auxillary table*  
+------|------|-------------|----------------  
+SpeciesCode | string |ICCAT species code |Species  
+YearC | integer | Calendar Year |  
+Decade | integer | Decade (natural; e.g. 2000 to 2009) |  
+FlagName | string | ICCAT Flag Name Flags |  
+FleetCode | string | ICCAT | Fleet code | Fleets  
+Stock | string | Species related stock or management unit |  
+GearGrp | string | Gear group |  
+SchoolType | string | Type of fishing operation (PS only) | School types  
+Trimester | string | Time strata (trimester 1, 2, 3, 4) |  
+QuadID | string | ICCAT quadrant ICCAT | Quadrants  
+Lat5 | integer | Latitude of a 5x5 square |  
+Lon5 | integer | Longitude of a 5x5 square |  
+yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 square |  
+xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square |  
 Catch_t | float | Nominal catches (tones) |  
 
 *Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
