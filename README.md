@@ -50,12 +50,25 @@ xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 s
 Catch_t | float | Nominal catches (tones) |  
 
 *Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
+### Species codes  
+The species codes for each of the major tuna species included in the `cdis5016-all9sp.csv` file  
 
+SpeciesID |	SpeciesCode	| ScieName | NameUK |	NameFR | NameSP|  
+----------|-------------|----------|--------|--------|-------|  
+1	| BFT	| Thunnus thynnus	| Northern bluefin tuna	| Thon rouge du Nord | Atún rojo del norte  
+3	| YFT	| Thunnus albacares |	Yellowfin tuna | Albacore	| Rabil |  
+4	| ALB	| Thunnus alalunga | Albacore	| Germon | Atún blanco |  
+5	| BET	| Thunnus obesus | Bigeye tuna | Thon obèse(=Patudo) | Patudo |  
+8	| SKJ	| Katsuwonus pelamis | Skipjack tuna | Listao |	Listado |  
+15	| SAI	| Istiophorus albicans |	Atlantic sailfish	| Voilier de l'Atlantique	| Pez vela del Atlántico |  
+17	| BUM	| Makaira nigricans	| Atlantic blue marlin | Makaire bleu de l'Atlantique	| Aguja azul del Atlántico |  
+18	| WHM	| Tetrapturus albidus |	Atlantic white marlin	| Makaire blanc de l'Atlantique	| Aguja blanca del Atlántico |
+19	| SWO	| Xiphias gladius	| Swordfish	| Espadon	| Pez espada |  
 
 ### Stocks  
-The stocks or managment units for each species
+The stocks or managment units for each species. 
 
----|ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
+Stock |ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
 ---|---|---|---|---|---|---|---|---|---|  
 AT (all Atlantic) | | X | | X | | | | X | |  
 ATE (Atlantic east) | | | X | | X | X | | | X |  
