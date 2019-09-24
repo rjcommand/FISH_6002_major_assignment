@@ -13,8 +13,8 @@ FISH_6002_major_assignment
 |  
 | - `README.md`  # You’re reading it! Metadata for FISH 6002 Major Assignment
 |  
-| - `data/`  # Folder where .csv files containing data can be found  
-|      +- `cdis5016-all9sp.csv`  # Dataset retrieved from ICCAT website  
+| - `data/`  # Folder where raw data files can be found; these are not edited once created
+|      +- `cdis5016-all9sp.csv`  # Dataset containing catch (t) retrieved from ICCAT website (see below)
 |  
 | - `scr/`  # Folder where all scripts to load, clean, analyze, etc. data can be found  
 |      +- `0.0 Load data and clean.R`  # Script to load data and clean it  
@@ -26,7 +26,7 @@ FISH_6002_major_assignment
 | - `resources/`  # Any resources related to interpretation of data will be saved here 
 |      +- `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
-## Metadata for .csv file
+## Metadata for `cdis5016-all9sp.csv` file
 Field | Type | Description | Auxillary table*
 ------|------|-------------|----------------
 SpeciesCode | string |ICCAT species code |Species
@@ -45,4 +45,6 @@ yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 sq
 xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
 Catch_t | float | Nominal catches (tones) |  
 
-*Auxillary table information can be found in the resources/ subfolder
+*Auxillary table information can be found in the `ICCAT_codes.xlsx` in the `resources/` subfolder  
+
+
