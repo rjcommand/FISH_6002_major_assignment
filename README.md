@@ -51,7 +51,7 @@ Catch_t | float | Nominal catches (tones) |
 
 *Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
 ### Species codes  
-The species codes for each of the major tuna species included in the `cdis5016-all9sp.csv` file  
+The species codes for each of the major tuna species included in the `cdis5016-all9sp.csv` file. Species codes can also be found in `ICCAT_codes.xlsx` in the `resources/` subfolder.
 
 SpeciesID |	SpeciesCode	| ScieName | NameUK |	NameFR | NameSP|  
 ----------|-------------|----------|--------|--------|-------|  
