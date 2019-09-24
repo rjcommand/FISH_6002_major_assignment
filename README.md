@@ -4,6 +4,11 @@ author: "Rylan J Command"
 date: "24/09/2019"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 ## Major project folder structure  
   
 FISH_6002_major_assignment  
@@ -22,10 +27,10 @@ FISH_6002_major_assignment
 |  
 | - `tables/`  # Folder where tables generated from scripts will be saved  
 |  
-| - `resources/`  # Any resources related to interpretation of data will be saved here (e.g. the DFO report containing the data)  
+| - `resources/`  # Any resources related to interpretation of data will be saved here 
 |      +- `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
-## Field Type Description Auxiliary Table*
+## Metadata for .csv file
 Field | Type | Description | Auxillary table
 ------|------|-------------|----------------
 SpeciesCode | string |ICCAT species code |Species
