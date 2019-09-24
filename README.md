@@ -1,10 +1,9 @@
----
-title: "FISH 6002 Major Assignment"
-author: "Rylan J Command"
-date: "24/09/2019"
-output: html_document
----
+# FISH 6002 Major Assignment
+### Rylan J. Command
+### Updated: 24/09/2019
 
+## Background
+This is the project folder associated with the FISH 6002 Major Assignment. 
 
 ## Project folder structure  
   
@@ -12,7 +11,7 @@ FISH_6002_major_assignment
 |  
 | - `FISH_6002_major_assignment.Rproj`  # The project file  
 |  
-| - `README.md`  # You’re reading it  
+| - `README.md`  # You’re reading it! Metadata for FISH 6002 Major Assignment
 |  
 | - `data/`  # Folder where .csv files containing data can be found  
 |      +- `cdis5016-all9sp.csv`  # Dataset retrieved from ICCAT website  
@@ -28,7 +27,7 @@ FISH_6002_major_assignment
 |      +- `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
 ## Metadata for .csv file
-Field | Type | Description | Auxillary table
+Field | Type | Description | Auxillary table*
 ------|------|-------------|----------------
 SpeciesCode | string |ICCAT species code |Species
 YearC | integer | Calendar Year |
@@ -45,3 +44,4 @@ Lon5 | integer | Longitude of a 5x5 square |
 yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 square |
 xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
 Catch_t | float | Nominal catches (tones) |
+###*Auxillary table information can be found in the \resources subfolder
