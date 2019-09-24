@@ -27,7 +27,7 @@ FISH_6002_major_assignment
 |      + - `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
 ## Metadata for `cdis5016-all9sp.csv` file
-This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas)
+This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas)  
 Field | Type | Description | Auxillary table*
 ------|------|-------------|----------------
 SpeciesCode | string |ICCAT species code |Species
