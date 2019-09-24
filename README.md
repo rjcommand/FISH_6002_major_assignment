@@ -3,7 +3,10 @@
 #### Updated: 24/09/2019
 
 ## Background
-This is the project folder associated with the FISH 6002 Major Assignment. 
+This is the project folder associated with the FISH 6002 Major Assignment.  
+
+This folder contains all of the data, scripts, and resources required to complete this assignment.  
+It also contains all of the figures and tables produced by the `.r` scripts.
 
 
 
@@ -27,7 +30,8 @@ FISH_6002_major_assignment
 |  
 | - `resources/`  # Any resources related to interpretation of data will be saved here 
 |      + - `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
-
+  
+  
 ## Metadata for `cdis5016-all9sp.csv` file
 This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas). 
 
@@ -50,6 +54,8 @@ xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 s
 Catch_t | float | Nominal catches (tones) |  
 
 *Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
+  
+  
 ### Species codes  
 The species codes for each of the major tuna species included in the `cdis5016-all9sp.csv` file. Species codes can also be found in `ICCAT_codes.xlsx` in the `resources/` subfolder.
 
