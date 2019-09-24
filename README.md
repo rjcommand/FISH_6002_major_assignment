@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-## Major project folder structure  
+## Project folder structure  
   
 FISH_6002_major_assignment  
 |  
