@@ -55,8 +55,8 @@ Catch_t | float | Nominal catches (tones) |
 ### Stocks  
 The stocks or managment units for each species
 
-|ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
---|--|--|---|---|---|---|---|---|---|  
+---|ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
+---|---|---|---|---|---|---|---|---|---|  
 AT (all Atlantic) | | X | | X | | | | X | |  
 ATE (Atlantic east) | | | X | | X | X | | | X |  
 ATN (Atlantic north) | X | | | | | | X | | |  
