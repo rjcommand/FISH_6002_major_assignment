@@ -44,5 +44,7 @@ Lon5 | integer | Longitude of a 5x5 square |
 yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 square |
 xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
 Catch_t | float | Nominal catches (tones) |  
---------|-------|-------------------------|-----
+--------|-------|-------------------------|-----  
+
+
 ###*Auxillary table information can be found in the \resources subfolder
