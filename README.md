@@ -5,6 +5,8 @@
 ## Background
 This is the project folder associated with the FISH 6002 Major Assignment. 
 
+
+
 ## Project folder structure  
   
 FISH_6002_major_assignment  
@@ -27,7 +29,7 @@ FISH_6002_major_assignment
 |      + - `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
 
 ## Metadata for `cdis5016-all9sp.csv` file
-This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas)  
+This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas). 
 
 Field | Type | Description | Auxillary table*  
 ------|------|-------------|----------------  
@@ -50,3 +52,14 @@ Catch_t | float | Nominal catches (tones) |
 *Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
 
 
+### Stocks  
+The stocks or managment units for each species
+
+|ALB|BET|BFT|BUM|SAI|SKJ|SWO|WHM|YFT|  
+--|--|--|---|---|---|---|---|---|---|  
+AT (all Atlantic) | | X | | X | | | | X | |  
+ATE (Atlantic east) | | | X | | X | X | | | X |  
+ATN (Atlantic north) | X | | | | | | X | | |  
+ATS (Atlantic south) | X | | | | | | X | | |  
+ATW (Atlantic west) | | | X | | X | X | | | X |  
+MED (Mediterranean) | X | X | X | X | X | X | X | X | X |  
