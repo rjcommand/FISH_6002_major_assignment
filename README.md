@@ -45,6 +45,6 @@ yLat5ctoid | float | Latitude (decimal degrees) centroid (Cartesian) of a 5x5 sq
 xLon5ctoid | float | Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
 Catch_t | float | Nominal catches (tones) |  
 
-*Auxillary table information can be found in the `ICCAT_codes.xlsx` in the `resources/` subfolder  
+*Auxillary table information can be found in `ICCAT_codes.xlsx` in the `resources/` subfolder  
 
 
