@@ -89,14 +89,15 @@ MED (Mediterranean) | X | X | X | X | X | X | X | X | X |
 The primary gear groups used to capture each species, defined based on its weight in overall catches by decade.  
 
 Gear group | ALB | BET | BFT | BUM | SAI | SKJ | SWO | WHM | YFT |  
-BB (bait boat) X X X X X X X X X
-GN (gillnet) X X X X X
-HL (handline) X X
-HP (harpoon) X
-LL (longline) X X X X X X X X X
-PS (purse seine) X X X X X X X X X
-RR (rod & reel) X X X X
-TP (trap) X
-TR (troll) X X X X
-TW (trawl) X
-oth (others) X X X X X X X X X
+-----------|-----|-----|-----|-----|-----|-----|-----|-----|-----|  
+BB (bait boat) | X | X | X | X | X | X | X | X | X |  
+GN (gillnet) | X | | | X | X | | X | X | |  
+HL (handline) | | | X | | X | | | | |  
+HP (harpoon) | | | | | | | X | | |  
+LL (longline) | X | X | X | X | X | X | X | X | X |  
+PS (purse seine) | X | X | X | X | X | X | X | X | X |  
+RR (rod & reel) | | | X | X | X | | | X | |  
+TP (trap) | | | X | | | | | | |  
+TR (troll) | X | | X | | X | | | X | |  
+TW (trawl) | X | | | | | | | | |  
+oth (others) | X | X | X | X | X | X | X | X | X |  
