@@ -8,13 +8,14 @@ This is the project folder associated with the FISH 6002 Major Assignment.
 This folder contains all of the data, scripts, and resources required to complete this assignment.  
 It also contains all of the figures and tables produced by the `.r` scripts.  
   
-The "Task II catch data raised to total landings (5x5 degree squares, quarter, gear)" dataset used for this project was obtained from the International Committee for the Conservation of Atlantic Tunas (ICCAT) database website (https://www.iccat.int/en/accesingdb.html), and can be found under "Sample fishing statistics and fish sizes". This dataset contains 556155 observations (rows) of 15 variables (columns). 
+The dataset used for this project is the "Task II catch data raised to total landings (5x5 degree squares, quarter, gear)" dataset obtained from the International Committee for the Conservation of Atlantic Tunas (ICCAT) database website (https://www.iccat.int/en/accesingdb.html) under "Sample fishing statistics and fish sizes", and is public domain. This dataset provides nominal catch (t) data for the 9 major tuna and tuna-like species managed by the ICCAT. It covers the time period from 1950 - 2016 and the geographical range is the Atlantic Ocean and the Mediterranean Sea. The dataset contains 556155 observations (rows) of 15 variables (columns).  
+Metadata for this dataset can be found below, and additional material can be found in the `resources/` folder.  
 
 ## Project folder structure  
   
 FISH_6002_major_assignment  
 |  
-| - `FISH_6002_major_assignment.Rproj`  # The project file  
+| - `FISH_6002_major_assignment.Rproj`  # The R project file  
 |  
 | - `README.md`  # You’re reading it! Metadata for FISH 6002 Major Assignment  
 |  
@@ -28,7 +29,7 @@ FISH_6002_major_assignment
 |  
 | - `tables/`  # Folder where tables generated from scripts will be saved  
 |  
-| - `resources/`  # Any resources related to interpretation of data will be saved here 
+| - `resources/`  # Any resources related to interpretation of data will be saved here  
 |      + - `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.
   
   
@@ -86,7 +87,7 @@ ATW (Atlantic west) | | | X | | X | X | | | X |
 MED (Mediterranean) | X | X | X | X | X | X | X | X | X |  
   
 ### Gear groups
-The primary gear groups used to capture each species, defined based on its weight in overall catches by decade.  
+The primary gear groups used to capture each species, defined based on its weight in overall catches by decade. An "X" indicates a species is regularly captured with a given gear group.
 
 Gear group | ALB | BET | BFT | BUM | SAI | SKJ | SWO | WHM | YFT |  
 -----------|-----|-----|-----|-----|-----|-----|-----|-----|-----|  
