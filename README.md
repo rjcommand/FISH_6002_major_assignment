@@ -6,9 +6,9 @@
 This is the project folder associated with the FISH 6002 Major Assignment.  
 
 This folder contains all of the data, scripts, and resources required to complete this assignment.  
-It also contains all of the figures and tables produced by the `.r` scripts.
-
-
+It also contains all of the figures and tables produced by the `.r` scripts.  
+  
+The "Task II catch data raised to total landings (5x5 degree squares, quarter, gear)" dataset used for this project was obtained from the International Committee for the Conservation of Atlantic Tunas (ICCAT) database website (https://www.iccat.int/en/accesingdb.html), and can be found under "Sample fishing statistics and fish sizes". This dataset contains 556155 observations (rows) of 15 variables (columns). 
 
 ## Project folder structure  
   
@@ -33,7 +33,9 @@ FISH_6002_major_assignment
   
   
 ## Metadata for `cdis5016-all9sp.csv` file
-This file contains catch (t) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas). 
+This file contains catch (in tons) for the nine major tuna and tuna-like species of ICCAT (International Commission for the Conservation of Atlantic Tunas).  
+
+The following table lists the variable/column names:  
 
 Field | Type | Description | Auxillary table*  
 ------|------|-------------|----------------  
@@ -82,3 +84,19 @@ ATN (Atlantic north) | X | | | | | | X | | |
 ATS (Atlantic south) | X | | | | | | X | | |  
 ATW (Atlantic west) | | | X | | X | X | | | X |  
 MED (Mediterranean) | X | X | X | X | X | X | X | X | X |  
+  
+### Gear groups
+The primary gear groups used to capture each species, defined based on its weight in overall catches by decade.  
+
+Gear group | ALB | BET | BFT | BUM | SAI | SKJ | SWO | WHM | YFT |  
+BB (bait boat) X X X X X X X X X
+GN (gillnet) X X X X X
+HL (handline) X X
+HP (harpoon) X
+LL (longline) X X X X X X X X X
+PS (purse seine) X X X X X X X X X
+RR (rod & reel) X X X X
+TP (trap) X
+TR (troll) X X X X
+TW (trawl) X
+oth (others) X X X X X X X X X
