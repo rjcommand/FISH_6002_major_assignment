@@ -24,7 +24,7 @@ FISH_6002_major_assignment
 |  
 | - `README.md`  # If you're veiwing this project on GitHub, you’re reading it! Metadata for FISH 6002 Major Assignment  
 |  
-| - `README.pdf`  # You're reading it! (the `.pdf` version) Metadata for FISH 6002  
+| - `README.pdf`  # You're reading it! (the `.pdf` version) Metadata for FISH 6002 Major Assignment  
 |  
 | - `data/`  # Folder where raw data files can be found; these are not edited once created  
 |      + - `cdis5016-all9sp.csv`  # Dataset containing catch (t) retrieved from ICCAT website (see below)  
