@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # FISH 6002 Major Assignment
 #### Rylan J. Command
 #### Updated: 24/09/2019
