@@ -16,22 +16,23 @@ library(dplyr)
 clean <- catch %>% 
   
   filter(SpeciesCode == "SWO",
-         Stock == "ATN")
+         Stock == "ATN" | Stock == "ATS")
 
 ## 0.3 Visualize catch (t) over time
-ggplot(clean, aes(x = YearC, y = Catch_t)) +
+ggplot(clean, aes(x = YearC, y = Catch_t, colour = Stock)) +
   geom_point()
 
 ## 0.4 Clean data to get mean catch per year
 clean_mean <- clean %>% 
   
-  group_by(YearC) %>% 
+  group_by(YearC, Stock) %>% 
   summarise(mean_Catch = mean(Catch_t),
             sd_Catch = sd(Catch_t))
 
 ## 0.5 Visualize mean catch (t) per year over time
-ggplot(clean_mean, aes(x = YearC, y = mean_Catch)) +
-  geom_point()
+ggplot(clean_mean, aes(x = YearC, y = mean_Catch, colour = Stock)) +
+  geom_point() +
+  geom_line()
 
 ## 0.6 Clean for gear type
 clean_gear <- clean %>% 
