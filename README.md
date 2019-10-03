@@ -19,7 +19,7 @@ Metadata for this dataset can be found below, and additional material can be fou
 
 ## Project folder structure  
   
-FISH_6002_major_assignment  
+Rylan_Command_FISH_6002_major_assignment  
 |  
 | - `FISH_6002_major_assignment.Rproj`  - The R project file  
 |  
