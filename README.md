@@ -14,6 +14,7 @@ This folder contains all of the data, scripts, and resources required to complet
 It also contains all of the figures and tables produced by the `.r` scripts.  
   
 The dataset used for this project is the "Task II catch data raised to total landings (5x5 degree squares, quarter, gear)" dataset obtained from the International Committee for the Conservation of Atlantic Tunas (ICCAT) database website (https://www.iccat.int/en/accesingdb.html) under "Sample fishing statistics and fish sizes", and is public domain. This dataset provides an estimation of Task I nominal catch (TINC) for the 9 major tuna and tuna-like species managed by the ICCAT. It covers the time period from 1950 - 2016 and the geographical range is the Atlantic Ocean and the Mediterranean Sea. The dataset contains 556155 observations (rows) of 15 variables (columns).  
+  
 Metadata for this dataset can be found below, and additional material can be found in the `resources/` folder.  
 
 ## Project folder structure  
