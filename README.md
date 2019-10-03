@@ -54,7 +54,7 @@ Field | Type | Description | Auxillary table*
 SpeciesCode | string |ICCAT species code |Species  
 YearC | integer | Calendar Year |  
 Decade | integer | Decade (natural; e.g. 2000 to 2009) |  
-FlagName | string | ICCAT Flag Name Flags |  
+FlagName | string | ICCAT Flag Name | Flags |  
 FleetCode | string | ICCAT | Fleet code | Fleets  
 Stock | string | Species related stock or management unit |  
 GearGrp | string | Gear group |  
