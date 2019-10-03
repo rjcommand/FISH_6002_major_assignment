@@ -22,9 +22,9 @@ FISH_6002_major_assignment
 |  
 | - `FISH_6002_major_assignment.Rproj`  # The R project file  
 |  
-| - `README.md`  # If you're veiwing this project on GitHub, you’re reading it! This file is a description of the project and file structure, and contains all of the metadata for the FISH 6002 Major Assignment (and was used to generate the `README.pdf` file)  
+| - `README.md`  # If you're veiwing this project on GitHub, you’re reading it! This file is a          |                  description of the project and file structure, and contains all of the metadata for  |                  the FISH 6002 Major Assignment (and was used to generate the `README.pdf` file)  
 |  
-| - `README.pdf`  # You're reading it! (the `.pdf` version) This file is a description of the project and file structure, and contains all of the metadata for FISH 6002 Major Assignment  
+| - `README.pdf`  # You're reading it! (the `.pdf` version) This file is a description of the project   |                   and file structure, and contains all of the metadata for FISH 6002 Major Assignment 
 |  
 | - `data/`  # Folder where raw data files can be found; these are not edited once created  
 |      + - `cdis5016-all9sp.csv`  # Dataset containing catch (t) retrieved from ICCAT website (see below)  
