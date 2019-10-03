@@ -20,28 +20,28 @@ Metadata for this dataset can be found below, and additional material can be fou
   
 FISH_6002_major_assignment  
 |  
-| - `FISH_6002_major_assignment.Rproj`  # The R project file  
+| - `FISH_6002_major_assignment.Rproj`  - The R project file  
 |  
-| - `README.md`  # If you're veiwing this project on GitHub, you’re reading it! This file is a description of the project and file  
+| - `README.md`  - If you're veiwing this project on GitHub, you’re reading it! This file is a description of the project and file  
 |                  structure, and contains all of the metadata for the FISH 6002 Major Assignment (and was used to generate the  
 |                  `README.pdf` file)  
 |  
-| - `README.pdf`  # You're reading it! (the `.pdf` version) This file is a description of the project and file  
+| - `README.pdf`  - You're reading it! (the `.pdf` version) This file is a description of the project and file  
 |                   structure, and contains all of the metadata for FISH 6002 Major Assignment  
 |  
-| - `data/`  # Folder where raw data files can be found; these are not edited once created  
-|      + - `cdis5016-all9sp.csv`  # Dataset containing catch (t) retrieved from ICCAT website (see below)  
+| - `data/`  - Folder where raw data files can be found; these are not edited once created  
+|      + - `cdis5016-all9sp.csv`  - Dataset containing catch (t) retrieved from ICCAT website (see below)  
 |  
-| - `scr/`  # Folder where all scripts to load, clean, analyze, etc. data can be found  
-|      + - `0.0 Load data and clean.R`  # Script to load data and clean it  
+| - `scr/`  - Folder where all scripts to load, clean, analyze, etc. data can be found  
+|      + - `0.0 Load data and clean.R`  - Script to load data and clean it  
 |  
-| - `figs/` # Folder where figures generated from scripts will be saved  
+| - `figs/` - Folder where figures generated from scripts will be saved  
 |  
-| - `tables/`  # Folder where tables generated from scripts will be saved  
+| - `tables/`  - Folder where tables generated from scripts will be saved  
 |  
-| - `resources/`  # Any resources related to interpretation of data will be saved here  
-|      + - `ICCAT_codes.xlsx`  # Metadata pertaining to species codes, fleet codes, country codes, etc.  
-|      + - `Readme_catdis.pdf`  # Metadata pertaining to variables in the dataset (some outlined below)
+| - `resources/`  - Any resources related to interpretation of data will be saved here  
+|      + - `ICCAT_codes.xlsx`  - Metadata pertaining to species codes, fleet codes, country codes, etc.  
+|      + - `Readme_catdis.pdf`  - Metadata pertaining to variables in the dataset (some outlined below)
   a
   
 ## Metadata for `cdis5016-all9sp.csv` file
