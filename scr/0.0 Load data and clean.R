@@ -65,58 +65,67 @@ library(tidyselect)
 #### 0.2 Create a wide-format dataset
 # Ok, so there are six factors here, which makes "spreading" the easy way impossible!
 # Here is the basic idea behind how to spread multiple factors from long to wide format:
-df <- data.frame(month=rep(1:3,2),
-                 student=rep(c("Amy", "Bob"), each=3),
-                 A=c(9, 7, 6, 8, 6, 9),
-                 B=c(6, 7, 8, 5, 6, 7))
-  
-df %>% 
-  gather(variable, value, -(month:student)) %>% 
-  unite(temp, student, variable) %>% 
-  spread(temp, value)
+#     1. gather() your data into long form, with each factor as a column and all of the numeric variables as a single column associated with another "value" column, with the value associated with each factor/numeric combination
+#
+#     2. unite() the levels of each factor within the same row into a single temporary column, where each combination of levels is also associated with a numeric variable (e.g. Species_Country_Fleet_Stock_Gear_School_var)
+#
+#     3. group_by(temp) and mutate(grouped_id = row_number()) to create a unique identifier for each row (this will solve any problem with spreading the same key values)
+#
+#     4. spread() the rows into columns, leaving the dataframe in wideformat!
+#
+# Here is a simple example of how this works:
+# df <- data.frame(month=rep(1:3,2),  # A numerical value, not affected by the spread
+#                 student=rep(c("Amy", "Bob"), each=3),  # A factor, each of the levels here will become columns
+#                 A=c(9, 7, 6, 8, 6, 9),  # 
+#                 B=c(6, 7, 8, 5, 6, 7))
+# df %>% 
+#   gather(variable, value, -(month:student)) %>% 
+#   unite(temp, student, variable) %>% 
+#   spread(temp, value)
 
+# Now let's apply this to the ICCAT dataset:
 catch.wide <- catch %>% 
-  select(SpeciesCode, FlagName, FleetCode, Stock, GearGrp, SchoolType, Catch_t, YearC, Decade, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid) %>%  # Re-order columns for ease of access
-  gather(variable, value, -(SpeciesCode:SchoolType)) %>%  # Gather all factors by Catch
-  unite(temp, SpeciesCode:SchoolType, variable) %>%  # Unite real combinations of levels in each of the 6 factors into rows, which are associated with a numerical variable (here, catch) (e.g. Species_Country_Fleet_Stock_Gear_School_var)
-  group_by(temp) %>%  # There are some repeated labels
-  mutate(grouped_id = row_number()) %>%  # Give each row a unique identifier so each combination of factor levels can become its own column
-  spread(temp, value) %>%  # Spread the rows into columns, leaving the dataframe (tibble) in wide format!
-  select(-grouped_id)  # Remove the unique identifier (don't need this anymore)
-
-
+                select(SpeciesCode, FlagName, FleetCode, Stock, GearGrp, SchoolType, 
+                       Catch_t, YearC, Decade, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid) %>%  # Re-order columns for ease of access
+                gather(variable, value, -(SpeciesCode:SchoolType)) %>%  # Gather all factors by Catch
+                unite(temp, SpeciesCode:SchoolType, variable) %>%  # Unite real combinations of levels in each of the 6 factors into rows, which are associated with a numerical variable (here, catch) (e.g. Species_Country_Fleet_Stock_Gear_School_var)
+                group_by(temp) %>%  # There are some repeated labels
+                mutate(grouped_id = row_number()) %>%  # Give each row a unique identifier so each combination of factor levels can become its own column
+                spread(temp, value) %>%  # Spread the rows into columns, leaving the dataframe (tibble) in wide format!
+                select(-grouped_id)  # Remove the unique identifier (don't need this anymore)
 View(catch.wide)
-17701*18090 == 556155*15
-## 0.2 Clean data to work with swordfish in north atlantic
+# Success!
+
+## 0.3 Clean data to work with swordfish in north atlantic
 clean <- catch %>% 
   
   filter(SpeciesCode == "SWO",
          Stock == "ATN" | Stock == "ATS")
 
-## 0.3 Visualize catch (t) over time
+## 0.4 Visualize catch (t) over time
 ggplot(clean, aes(x = YearC, y = Catch_t, colour = Stock)) +
   geom_point()
 
-## 0.4 Clean data to get mean catch per year
+## 0.5 Clean data to get mean catch per year
 clean_mean <- clean %>% 
   
   group_by(YearC, Stock) %>% 
   summarise(mean_Catch = mean(Catch_t),
             sd_Catch = sd(Catch_t))
 
-## 0.5 Visualize mean catch (t) per year over time
+## 0.6 Visualize mean catch (t) per year over time
 ggplot(clean_mean, aes(x = YearC, y = mean_Catch, colour = Stock)) +
   geom_point() +
   geom_line()
 
-## 0.6 Clean for gear type
+## 0.7 Clean for gear type
 clean_gear <- clean %>% 
   
   group_by(YearC,
            GearGrp) %>% 
   summarise(mean_Catch = mean(Catch_t))
 
-## 0.7 Visualize catch (t) over time by gear type
+## 0.8 Visualize catch (t) over time by gear type
 ggplot(clean_gear, aes(x = YearC, y = mean_Catch, fill = GearGrp, colour = GearGrp)) +
   geom_point() +
   geom_line() +
