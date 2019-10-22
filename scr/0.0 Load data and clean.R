@@ -4,6 +4,7 @@
 
 ## 0.0 Load in data
 catch <- read.csv("data/cdis5016-all9sp.csv", header = TRUE)
+View(catch)
 
 ## Variables list
 # SpeciesCode: Three letter code corresponding to each species
@@ -60,9 +61,24 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 
+catch.wide <- catch %>% 
+  group_by(SpeciesCode) %>% 
+  mutate(grouped_id = row_number()) %>% 
+  spread(GearGrp, Catch_t, convert = TRUE) %>% 
+  select(-grouped_id)
 
+df <- data.frame(month=rep(1:3,2),
+                 student=rep(c("Amy", "Bob"), each=3),
+                 A=c(9, 7, 6, 8, 6, 9),
+                 B=c(6, 7, 8, 5, 6, 7))
+  
+df %>% 
+  gather(variable, value, -(month:student)) %>% 
+  unite(temp, student, variable) %>% 
+  spread(temp, value)
 
-
+ View(catch.wide)
+?spread
 ## 0.2 Clean data to work with swordfish in north atlantic
 clean <- catch %>% 
   
