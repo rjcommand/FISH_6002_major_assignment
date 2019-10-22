@@ -60,13 +60,11 @@ sapply(catch[,sapply(catch, is.factor)], levels)  # All factor levels look good!
 library(ggplot2)
 library(tidyr)
 library(dplyr)
+library(tidyselect)
 
-catch.wide <- catch %>% 
-  group_by(SpeciesCode) %>% 
-  mutate(grouped_id = row_number()) %>% 
-  spread(GearGrp, Catch_t, convert = TRUE) %>% 
-  select(-grouped_id)
-
+#### 0.2 Create a wide-format dataset
+# Ok, so there are six factors here, which makes "spreading" the easy way impossible!
+# Here is the basic idea behind how to spread multiple factors from long to wide format:
 df <- data.frame(month=rep(1:3,2),
                  student=rep(c("Amy", "Bob"), each=3),
                  A=c(9, 7, 6, 8, 6, 9),
@@ -77,8 +75,18 @@ df %>%
   unite(temp, student, variable) %>% 
   spread(temp, value)
 
- View(catch.wide)
-?spread
+catch.wide <- catch %>% 
+  select(SpeciesCode, FlagName, FleetCode, Stock, GearGrp, SchoolType, Catch_t, YearC, Decade, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid) %>%  # Re-order columns for ease of access
+  gather(variable, value, -(SpeciesCode:SchoolType)) %>%  # Gather all factors by Catch
+  unite(temp, SpeciesCode:SchoolType, variable) %>%  # Unite real combinations of levels in each of the 6 factors into rows, which are associated with a numerical variable (here, catch) (e.g. Species_Country_Fleet_Stock_Gear_School_var)
+  group_by(temp) %>%  # There are some repeated labels
+  mutate(grouped_id = row_number()) %>%  # Give each row a unique identifier so each combination of factor levels can become its own column
+  spread(temp, value) %>%  # Spread the rows into columns, leaving the dataframe (tibble) in wide format!
+  select(-grouped_id)  # Remove the unique identifier (don't need this anymore)
+
+
+View(catch.wide)
+17701*18090 == 556155*15
 ## 0.2 Clean data to work with swordfish in north atlantic
 clean <- catch %>% 
   
