@@ -27,6 +27,7 @@ View(catch)
 
 #### 0.1.1 Did the data load correctly? ####
 head(catch)
+tail(catch)
 str(catch)
 ## Looks good
 
@@ -49,18 +50,41 @@ plot(catch$yLat5ctoid)
 plot(catch$xLon5ctoid)
 plot(catch$Catch_t)
 ## All look good!
-
+?gsub
 
 #### 0.1.4 Are factor levels correct? ####
 ## Go through all factors and make sure levels are correct
-sapply(catch[,sapply(catch, is.factor)], levels)  # All factor levels look good!
+sapply(catch[,sapply(catch, is.factor)], levels)  
+# 1. Looks like there are some special characters in the FlagName factor, let's recode these so they print properly.
+# 2. In the GearGrp factor, let's rename "oth" to "OTHER" so it looks a bit nicer
+catch <- catch %>% 
+  mutate(FlagName = recode(FlagName,
+                           "C\xf4te d'Ivoire" = "Côte d'Ivoire",
+                           "Cura\xe7ao" = "Curaçao",
+                           "EU.Espa\xf1a" = "EU.España",
+                           "Guin\xe9e Rep." = "Guinée Rep.",
+                           "S. Tom\xe9 e Pr\xedncipe" = "São Tomé and Príncipe",
+                           ),
+         GearGrp = recode(GearGrp,
+                          "oth" = "OTHER")
+         )
+# Much better!
+# Everything else looks good, so let's move on
 
-## I want to look specifically at swordfish, let's clean the dataset
-## 0.1 Load in packages
+## I want to look specifically at mean catch per year of North Atlantic swordfish, let's clean the dataset
+## 0.2 Load in packages
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(tidyselect)
+
+catch_swo <- catch %>% 
+  filter(SpeciesCode == "SWO",
+         Stock == "ATN") %>% 
+  group_by(YearC, FlagName, FleetCode, GearGrp) %>% 
+  summarise(MeanCatch_t = mean(Catch_t))
+
+
 
 #### 0.2 Create a wide-format dataset
 # Ok, so there are six factors here, which makes "spreading" the easy way impossible!
