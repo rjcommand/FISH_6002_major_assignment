@@ -23,7 +23,7 @@ View(catch)
 # xLon5ctoid: Longitude (decimal degrees) centroid (Cartesian) of a 5x5 square
 # Catch_t: Nominal catches (tonnes)
 
-## 0.1 Check to see if the data are clean
+#### 0.1 Check to see if the data are clean ####
 
 #### 0.1.1 Did the data load correctly? ####
 head(catch)
@@ -31,9 +31,11 @@ tail(catch)
 str(catch)
 ## Looks good
 
+
 #### 0.1.2 Are the data types correct? ####
 sapply(catch, class)
 ## Looks good
+
 
 #### 0.1.3 Check for impossible values ####
 ## Go through all of the numerical values to check if they are impossible
@@ -50,27 +52,35 @@ plot(catch$yLat5ctoid)
 plot(catch$xLon5ctoid)
 plot(catch$Catch_t)
 ## All look good!
-?gsub
+
 
 #### 0.1.4 Are factor levels correct? ####
 ## Go through all factors and make sure levels are correct
 sapply(catch[,sapply(catch, is.factor)], levels)  
-# 1. Looks like there are some special characters in the FlagName factor, let's recode these so they print properly.
-# 2. In the GearGrp factor, let's rename "oth" to "OTHER" so it looks a bit nicer
+# 1. In in the FlagName factor, there are some special characters - et's recode these so they print properly.
+# 2. In the GearGrp factor, let's rename "oth" to "OTHER" so it looks a bit nicer.
+# 3. In the SchoolType factor, there is a defined "n/a" value. This caught my attention, but it is defined specifically in the metadata (ICCAT_codes.xlsx), so I'll leave it like this.
+
+# Let's fix it up
 catch <- catch %>% 
-  mutate(FlagName = recode(FlagName,
+  mutate(FlagName = recode(FlagName,  # First address the special characters in FlagName
                            "C\xf4te d'Ivoire" = "Côte d'Ivoire",
                            "Cura\xe7ao" = "Curaçao",
                            "EU.Espa\xf1a" = "EU.España",
                            "Guin\xe9e Rep." = "Guinée Rep.",
                            "S. Tom\xe9 e Pr\xedncipe" = "São Tomé and Príncipe",
                            ),
-         GearGrp = recode(GearGrp,
+         GearGrp = recode(GearGrp,  # Then rename the "oth" level in GearGrp
                           "oth" = "OTHER")
          )
+
+# Check it out:
+sapply(catch[,sapply(catch, is.factor)], levels)  
 # Much better!
 # Everything else looks good, so let's move on
 
+
+#### 0.2 North Atlantic swordfish ####
 ## I want to look specifically at mean catch per year of North Atlantic swordfish, let's clean the dataset
 ## 0.2 Load in packages
 library(ggplot2)
@@ -81,8 +91,8 @@ library(tidyselect)
 catch_swo <- catch %>% 
   filter(SpeciesCode == "SWO",
          Stock == "ATN") %>% 
-  group_by(YearC, FlagName, FleetCode, GearGrp) %>% 
-  summarise(MeanCatch_t = mean(Catch_t))
+  select(-SpeciesCode)  %>% # Remove SpeciesCode as a factor, since we're only looking at swordfish now
+  group_by(YearC, FlagName, FleetCode, GearGrp)
 
 
 
