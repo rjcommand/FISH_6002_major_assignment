@@ -46,6 +46,7 @@ Rylan_Command_FISH_6002_major_assignment
 | - `resources/`  - Any resources related to interpretation of data will be saved here  
 |      + - `ICCAT_codes.xlsx`  - Metadata pertaining to species codes, fleet codes, country codes, etc.  
 |      + - `Readme_catdis.pdf`  - Metadata pertaining to variables in the dataset (some outlined below)  
+|      + - `2017_SCRS_REP_ENG.pdf`  - ICCAT 2017 report of the Standing Committee of Research and Statistics  
   
   
 ## Metadata for `cdis5016-all9sp.csv` file
