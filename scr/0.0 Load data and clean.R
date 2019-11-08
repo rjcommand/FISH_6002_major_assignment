@@ -94,7 +94,7 @@ sapply(catch[, sapply(catch, is.factor)], levels)
 
 
 #### 0.2 North Atlantic swordfish ####
-## I want to look specifically at mean catch per year of North Atlantic swordfish, let's clean the dataset
+## I want to look specifically at North Atlantic swordfish, let's clean the dataset
 catch_swo <- catch %>% 
   filter(SpeciesCode == "SWO",  # Select only those rows that contain swordfish observations
          Stock == "ATN") %>%   # Select only those rows that concern the North Atlantic stock
@@ -103,59 +103,35 @@ catch_swo <- catch %>%
   group_by(YearC, FlagName, FleetCode, GearGrp)  # Re-order the rows
 View(catch_swo)
 
-#### 0.2 Create a wide-format dataset
-# Ok, so there are four factors here, which makes "spreading" the easy way impossible!
-# Here is the basic idea behind how to spread multiple factors from long to wide format:
-#     1. gather() your data into long form, with each factor as a column and all of the numeric variables as a single column associated with another "value" column, with the value associated with each factor/numeric combination
-#
-#     2. unite() the levels of each factor within the same row into a single temporary column, where each combination of levels is also associated with a numeric variable (e.g. Country_Fleet_Gear_School_var)
-#
-#     3. group_by(temp) and mutate(grouped_id = row_number()) to create a unique identifier for each row (this will solve any problem with spreading the same key values)
-#
-#     4. spread() the rows into columns, leaving the dataframe in wideformat!
-#
-# Here is a simple example of how this works:
-# df <- data.frame(month=rep(1:3,2),  # A numerical value, not affected by the spread
-#                 student=rep(c("Amy", "Bob"), each=3),  # A factor, each of the levels here will become columns
-#                 A=c(9, 7, 6, 8, 6, 9),  # 
-#                 B=c(6, 7, 8, 5, 6, 7))
-# df %>% 
-#   gather(variable, value, -(month:student)) %>% 
-#   unite(temp, student, variable) %>% 
-#   spread(temp, value)
+#### 0.3 Create a wide-format dataset ####
+## I want to spread by FlagName, FleetCode, GearGrp, and SchoolType to look at how much swordfish was caught by each fleet/country using each gear type on what school type
+w <- catch_swo %>% 
+  unite(temp, FlagName, FleetCode, GearGrp, SchoolType) %>%  # Unite the FlagName, FleetCode, GearGrp, and SchoolType columns into one column "temp", separated by "_"
+  mutate(grouped_id = row_number()) %>%  # Add a column to give each row a unique identifyer; need to do this because multiple rows have the same "keys" (e.g. there are several Canadian Longline catches, just at different locations)
+  spread(temp, Catch) %>%  # Spread the united column "temp" by the values of "Catch" to get a column of catch in tons for each Country_Fleet_Gear_School combination
+  select(-grouped_id)  # Remove the unique identifyer column
+View(w)
 
-# Now let's apply this to the ICCAT dataset:
-catch_swo_wide <- catch_swo %>% 
-                    select(FlagName, FleetCode, GearGrp, SchoolType, 
-                           Catch, YearC, Decade, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid) %>%  # Re-order columns for ease of access
-                    gather(variable, value, -(FlagName:SchoolType)) %>%  # Gather all factors by Catch
-                    unite(temp, FlagName:SchoolType, variable) %>%  # Unite real combinations of levels in each of the 6 factors into rows, which are associated with a numerical variable (here, catch) (e.g. Country_Fleet_Gear_School_var)
-                    group_by(temp) %>%  # There are some repeated labels
-                    mutate(grouped_id = row_number()) %>%  # Give each row a unique identifier so each combination of factor levels can become its own column
-                    spread(temp, value) %>%  # Spread the rows into columns, leaving the dataframe (tibble) in wide format!
-                    select(-grouped_id)  # Remove the unique identifier (don't need this anymore)
-View(catch_swo_wide)
-# Success!
+## Save the .csv file to the data/ directory
+write.csv(w, "./data/catch_wide_format.csv")
 
-#### 0.3 Convert back to long-form ####
-## Gathering by multiple factors is much simpler than spreading
-catch_swo_long <- catch_swo_wide %>% 
-  mutate(grouped_id = row_number()) %>% 
-  gather(grouped_id, value, Barbados_BRB_LL_None_Catch:Venezuela_VEN.ARTISANAL_GN_None_yLat5ctoid) %>% 
-  extract(grouped_id, c("FlagName", "FleetCode", "GearGrp", "SchoolType", "variable"), "(.*)_(#!)_(!@%)_(!%@)_(!%)$")
 
-View(catch_swo_long)
-  
-  
-  gather(catch_swo_wide, condition, measurement, Barbados_BRB_LL_None_Catch_t:Venezuela_VEN.ARTISANAL_GN_None_yLat5ctoid)
+#### 0.4 Create a long-format dataset ####
+## Basically, get it back to how it was
+l <- w %>% 
+  mutate(grouped_id = row_number()) %>%  # Add a unique identifyer for each row
+  gather(temp, Catch, Barbados_BRB_LL_None:Venezuela_VEN.ARTISANAL_GN_None) %>%  # Gather all of the Country_Fleet_Gear_School into one column, "temp", and their catches into another "Catch" column
+  group_by(temp) %>% 
+  separate(col = temp, into = c("FlagName", "FleetCode", "GearGrp", "SchoolType"), sep = "_", extra = "drop", fill = "right") %>%  # Separate the single "temp" column into 4 columns, one for each factor, indicating they were separated by underscores
+  filter(!is.na(Catch)) %>%  # Remove all rows that produce NA for "Catch" (e.g. Barbados with CAN fleet code doesn't exist), as there weren't any in the original dataset
+  select(YearC, Decade, FlagName, FleetCode, GearGrp, SchoolType, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid, Catch)  # Re-order the columns
 
-  df <- data.frame(x = c(NA, "a-b", "a-d", "b-c", "d-e"))
-  df %>% extract(x, "A")
-  df %>% extract(x, c("A", "B"), "([[:alnum:]]+)-([[:alnum:]]+)")
+## Convert the factors back into factors
+l <- l %>% 
+  mutate_if(sapply(l, is.character), as.factor)  # Convert the factors back into factors
 
-View(catch_swo_long)
- tail(catch_swo_long) 
-  
+## Save the .csv file to the data/directory
+
   
 
 ## 0.4 Visualize catch (t) over time
