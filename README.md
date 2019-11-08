@@ -34,7 +34,8 @@ Rylan_Command_FISH_6002_major_assignment
 |      + - `cdis5016-all9sp.csv`  - Dataset containing catch (t) retrieved from ICCAT website (see below)  
 |  
 | - `outputs/`  - Folder where data (e.g. clean data) generated from scripts can be found  
-|      + - `catch_swo_longformat.csv`  - Long format dataset generated for part 2 of Major Assignment  
+|                 (`0.0 Load data and clean.R` MUST BE RUN FIRST TO GENERATE)  
+|      + - `catch_swo_longformat.csv`  - Long format dataset generated for part 2 of Major Assignment   
 |      + - `catch_swo_wideformat.csv`  - Wide format dataset generated for part 2 of Major Assignment  
 |  
 | - `scr/`  - Folder where all scripts to load, clean, analyze, etc. data can be found  
@@ -48,7 +49,7 @@ Rylan_Command_FISH_6002_major_assignment
 | - `resources/`  - Any resources related to interpretation of data will be saved here  
 |      + - `ICCAT_codes.xlsx`  - Metadata pertaining to species codes, fleet codes, country codes, etc.  
 |      + - `Readme_catdis.pdf`  - Metadata pertaining to variables in the dataset (some outlined below)  
-|      + - `2017_SCRS_REP_ENG.pdf`  - ICCAT 2017 report of the Standing Committee of Research and Statistics  
+  
   
   
 ## Metadata for `cdis5016-all9sp.csv` file
