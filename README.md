@@ -5,7 +5,7 @@ output:
 ---
 # FISH 6002 Major Assignment
 #### Rylan J. Command
-#### Updated: 24/09/2019
+#### Updated: 08/11/2019
 
 ## Background
 This is the project folder associated with the FISH 6002 Major Assignment.  
@@ -32,9 +32,12 @@ Rylan_Command_FISH_6002_major_assignment
 |  
 | - `data/`  - Folder where raw data files can be found; these are not edited once created  
 |      + - `cdis5016-all9sp.csv`  - Dataset containing catch (t) retrieved from ICCAT website (see below)  
+|      + - `catch_long_format.csv`  - Long format dataset generated for part 2 of Major Assignment  
+|      + - `catch_wide_format.csv`  - Wide format dataset generated for part 2 of Major Assignment  
 |  
 | - `scr/`  - Folder where all scripts to load, clean, analyze, etc. data can be found  
-|      + - `0.0 Load data and clean.R`  - Script to load data and clean it  
+|      + - `0.0 Load data and clean.R`  - Script to load data and clean data; contains code to complete part 2  
+|                                         of the FISH 6002 Major Assignment  
 |  
 | - `figs/` - Folder where figures generated from scripts will be saved  
 |  
@@ -56,7 +59,7 @@ SpeciesCode | string |ICCAT species code |Species
 YearC | integer | Calendar Year |  
 Decade | integer | Decade (natural; e.g. 2000 to 2009) |  
 FlagName | string | ICCAT Flag Name | Flags |  
-FleetCode | string | ICCAT | Fleet code | Fleets  
+FleetCode | string | ICCAT Fleet code | Fleets  
 Stock | string | Species related stock or management unit |  
 GearGrp | string | Gear group |  
 SchoolType | string | Type of fishing operation (PS only) | School types  
