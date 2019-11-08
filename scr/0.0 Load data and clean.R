@@ -119,7 +119,7 @@ w <- catch_swo %>%
 View(w)
 
 ## Save the .csv file to the data/ directory
-write.csv(w, "./data/catch_wide_format.csv")
+write.csv(w, "./outputs/catch_swo_wideformat.csv")
 
 
 #### 0.4 Create a long-format dataset ####
@@ -137,4 +137,4 @@ l <- w %>%
 View(l)
 
 ## Save the .csv file to the data/directory
-write.csv(l, "./data/catch_long_format.csv")
+write.csv(l, "./outputs/catch_swo_longformat.csv")
