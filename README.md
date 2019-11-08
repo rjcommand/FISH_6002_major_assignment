@@ -32,8 +32,10 @@ Rylan_Command_FISH_6002_major_assignment
 |  
 | - `data/`  - Folder where raw data files can be found; these are not edited once created  
 |      + - `cdis5016-all9sp.csv`  - Dataset containing catch (t) retrieved from ICCAT website (see below)  
-|      + - `catch_long_format.csv`  - Long format dataset generated for part 2 of Major Assignment  
-|      + - `catch_wide_format.csv`  - Wide format dataset generated for part 2 of Major Assignment  
+|  
+| - `outputs/`  - Folder where data (e.g. clean data) generated from scripts can be found  
+|      + - `catch_swo_longformat.csv`  - Long format dataset generated for part 2 of Major Assignment  
+|      + - `catch_swo_wideformat.csv`  - Wide format dataset generated for part 2 of Major Assignment  
 |  
 | - `scr/`  - Folder where all scripts to load, clean, analyze, etc. data can be found  
 |      + - `0.0 Load data and clean.R`  - Script to load data and clean data; contains code to complete part 2  
