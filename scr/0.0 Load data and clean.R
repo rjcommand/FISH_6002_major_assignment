@@ -53,15 +53,16 @@ catch <- catch %>%
 
 
 ## Plot each numerical value to visually assess
-plot(catch$Year)
-plot(catch$Decade)
-plot(catch$Trimester)
-plot(catch$QuadID)
-plot(catch$Lat5)
-plot(catch$Lon5)
-plot(catch$yLat5ctoid)
-plot(catch$xLon5ctoid)
-plot(catch$Catch)
+## These take a while to load so I commented them out - less painful if you run the whole thing at once
+# plot(catch$Year)
+# plot(catch$Decade)
+# plot(catch$Trimester)
+# plot(catch$QuadID)
+# plot(catch$Lat5)
+# plot(catch$Lon5)
+# plot(catch$yLat5ctoid)
+# plot(catch$xLon5ctoid)
+# plot(catch$Catch)
 ## All look good!
 
 
@@ -93,15 +94,18 @@ sapply(catch[, sapply(catch, is.factor)], levels)
 # Everything else looks good, so let's move on
 
 
-#### 0.2 North Atlantic swordfish ####
+#### 0.2 Subset North Atlantic swordfish ####
 ## I want to look specifically at North Atlantic swordfish, let's clean the dataset
 catch_swo <- catch %>% 
   filter(SpeciesCode == "SWO",  # Select only those rows that contain swordfish observations
          Stock == "ATN") %>%   # Select only those rows that concern the North Atlantic stock
   select(-SpeciesCode, 
-         -Stock)  %>%  # Remove SpeciesCode and Stock as a factor, since we're only looking at North Atlantic swordfish now
-  group_by(YearC, FlagName, FleetCode, GearGrp)  # Re-order the rows
+         -Stock) # %>%  # Remove SpeciesCode and Stock as a factor, since we're only looking at North Atlantic swordfish now
+ # group_by(YearC, FlagName, FleetCode, GearGrp)  # Re-order the rows
+
+## Check it out
 View(catch_swo)
+
 
 #### 0.3 Create a wide-format dataset ####
 ## I want to spread by FlagName, FleetCode, GearGrp, and SchoolType to look at how much swordfish was caught by each fleet/country using each gear type on what school type
@@ -110,6 +114,8 @@ w <- catch_swo %>%
   mutate(grouped_id = row_number()) %>%  # Add a column to give each row a unique identifyer; need to do this because multiple rows have the same "keys" (e.g. there are several Canadian Longline catches, just at different locations)
   spread(temp, Catch) %>%  # Spread the united column "temp" by the values of "Catch" to get a column of catch in tons for each Country_Fleet_Gear_School combination
   select(-grouped_id)  # Remove the unique identifyer column
+
+## Check it out
 View(w)
 
 ## Save the .csv file to the data/ directory
@@ -124,42 +130,11 @@ l <- w %>%
   group_by(temp) %>% 
   separate(col = temp, into = c("FlagName", "FleetCode", "GearGrp", "SchoolType"), sep = "_", extra = "drop", fill = "right") %>%  # Separate the single "temp" column into 4 columns, one for each factor, indicating they were separated by underscores
   filter(!is.na(Catch)) %>%  # Remove all rows that produce NA for "Catch" (e.g. Barbados with CAN fleet code doesn't exist), as there weren't any in the original dataset
-  select(YearC, Decade, FlagName, FleetCode, GearGrp, SchoolType, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid, Catch)  # Re-order the columns
+  select(YearC, Decade, FlagName, FleetCode, GearGrp, SchoolType, Trimester, QuadID, Lat5, Lon5, yLat5ctoid, xLon5ctoid, Catch) %>%  # Re-order the columns
+  mutate_if(is.character, as.factor)  # Convert the factors back into factors
 
-## Convert the factors back into factors
-l <- l %>% 
-  mutate_if(sapply(l, is.character), as.factor)  # Convert the factors back into factors
+## Check it out
+View(l)
 
 ## Save the .csv file to the data/directory
-
-  
-
-## 0.4 Visualize catch (t) over time
-ggplot(clean, aes(x = YearC, y = Catch_t, colour = Stock)) +
-  geom_point()
-
-## 0.5 Clean data to get mean catch per year
-clean_mean <- clean %>% 
-  
-  group_by(YearC, Stock) %>% 
-  summarise(mean_Catch = mean(Catch_t),
-            sd_Catch = sd(Catch_t))
-
-## 0.6 Visualize mean catch (t) per year over time
-ggplot(clean_mean, aes(x = YearC, y = mean_Catch, colour = Stock)) +
-  geom_point() +
-  geom_line()
-
-## 0.7 Clean for gear type
-clean_gear <- clean %>% 
-  
-  group_by(YearC,
-           GearGrp) %>% 
-  summarise(mean_Catch = mean(Catch_t))
-
-## 0.8 Visualize catch (t) over time by gear type
-ggplot(clean_gear, aes(x = YearC, y = mean_Catch, fill = GearGrp, colour = GearGrp)) +
-  geom_point() +
-  geom_line() +
-  facet_wrap(~ GearGrp)
-
+write.csv(l, "./data/catch_long_format.csv")
