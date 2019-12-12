@@ -83,7 +83,7 @@ catch <- catch %>%
                            "S. Tom\xe9 e Pr\xedncipe" = "São Tomé and Príncipe",
                            ),
          GearGrp = recode(GearGrp,  # Then rename the "oth" level in GearGrp
-                          "oth" = "OTHER"),
+                          "oth" = "OT"),
          SchoolType = recode(SchoolType,
                              "n/a" = "None")
          )
