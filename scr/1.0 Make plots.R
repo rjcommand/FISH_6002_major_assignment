@@ -5,67 +5,17 @@
 
 
 #### Figure 1. Total swordfish catch per year by gear group ####
-catch_year <- catch_swo %>% 
-  group_by(YearC, GearGrp) %>% 
-  summarise(total_Catch = sum(Catch))
+## The 4 less common gears are difficult to distinguish on a full plot, so let's make a multiplot!
 
-catch_year$GearGrp <- factor(catch_year$GearGrp, levels = c("LL", "HP", "GN", "BB", "PS", "OTHER"))
-
-ggplot(catch_year, aes(x = YearC, y = total_Catch, colour = GearGrp)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(name = "Time", breaks = c(seq(1950, 2016, 5))) +
-  scale_y_continuous(name = "Catch (t)") +
-  scale_colour_brewer(name = "Gear type", palette = "Dark2") +
-  theme_bw() +
-  theme(axis.title = element_text(size = 14),
-        axis.text = element_text(size = 10),
-        legend.title = element_blank())
-
-ggsave("./figs/COMMAND_Figure1.tiff", # save in the /plots subfolder
-       dpi=300, #300 DPI
-       width = 20, height = 12, #SELECT WIDTH AND HEIGHT
-       device = "tiff", #export as tiff
-       compression = "lzw",
-       units = "cm")
-
-multiplot <- function(..., plotlist=NULL, cols) {
-  require(grid)
-  
-  # Make a list from the ... arguments and plotlist
-  plots <- c(list(...), plotlist)
-  
-  numPlots = length(plots)
-  
-  # Make the panel
-  plotCols = cols                          # Number of columns of plots
-  plotRows = ceiling(numPlots/plotCols) # Number of rows needed, calculated from # of cols
-  
-  # Set up the page
-  grid.newpage()
-  pushViewport(viewport(layout = grid.layout(plotRows, plotCols)))
-  vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-  
-  # Make each plot, in the correct location
-  for (i in 1:numPlots) {
-    curRow = ceiling(i/plotCols)
-    curCol = (i-1) %% plotCols + 1
-    print(plots[[i]], vp = vplayout(curRow, curCol ))
-  }
-  
-}
-
-
-
-
+## Get the total catch per year by the top two gear types (longline and harpoon)
 catch_maj <- catch_swo %>% 
-  filter(GearGrp == "LL" | GearGrp == "HP") %>% 
+  filter(GearGrp == "LL" | GearGrp == "HP") %>%  # Select only longline and harpoon gears
   group_by(YearC, GearGrp) %>% 
-  summarise(total_catch = sum(Catch))
+  summarise(total_catch = sum(Catch))  # Get total catch per year in each gear type
 
-catch_maj$GearGrp <- factor(catch_maj$GearGrp, levels = c("LL", "HP"))
+catch_maj$GearGrp <- factor(catch_maj$GearGrp, levels = c("LL", "HP"))  # Reorder gear types to be in descending order
 
+## Create the plot for the two major gear types (longline and harpoon)
 p1 <- ggplot(catch_maj, aes(x = YearC, y = total_catch, colour = GearGrp)) +
         geom_point() +
         geom_line() +
@@ -79,14 +29,16 @@ p1 <- ggplot(catch_maj, aes(x = YearC, y = total_catch, colour = GearGrp)) +
               axis.text = element_text(size = 10),
               legend.title = element_blank())
 
+## Get the total catch per year by the other gear types
 catch_min <- catch_swo %>% 
-  filter(GearGrp != "LL",
+  filter(GearGrp != "LL",  # Filter out the top two gear types
          GearGrp != "HP") %>% 
   group_by(YearC, GearGrp) %>% 
-  summarise(total_catch = sum(Catch))
+  summarise(total_catch = sum(Catch))  # Get total catch per year in each gear type
 
-catch_min$GearGrp <- factor(catch_min$GearGrp, levels = c("GN", "BB", "PS", "OT"))
+catch_min$GearGrp <- factor(catch_min$GearGrp, levels = c("GN", "BB", "PS", "OT"))  # Reorder gear types in descending order
 
+## Create the plot for the less common gear types
 p2 <- ggplot(catch_min, aes(x = YearC, y = total_catch, colour = GearGrp)) +
         geom_point() +
         geom_line() +
@@ -99,7 +51,8 @@ p2 <- ggplot(catch_min, aes(x = YearC, y = total_catch, colour = GearGrp)) +
               axis.text = element_text(size = 10),
               legend.title = element_blank())
 
-### Create a multi-panel plot 
+## Create a multi-panel plot 
+## Load the gridExtra library
 library(gridExtra)
 
 ## Create lables for multiplot
@@ -134,8 +87,6 @@ ggsave("./figs/COMMAND_Figure1.tiff", # save in the /plots subfolder
        units = "cm")
 
 
-multiplot(p1, p2, cols = 2)
-?arrangeGrob
 
 #### Figure 2. Total catch of North Atlantic swordfish over time by the Top5 fishers + others ####
 ## Get Top5 fishers of North Atlantic swordfish
@@ -196,8 +147,6 @@ ggsave("./figs/COMMAND_Figure2.tiff", # save in the /plots subfolder
        units = "cm")
 
 #### Figure 3. Total catch of Tunas in the North Atlantic stock ####
-View(catch)
-
 ggplot(catch, aes(x = YearC, y = Catch, fill = SpeciesCode)) +
   geom_bar(stat = "identity") +
   scale_fill_brewer(type = "qual", palette = "Set3") +
@@ -219,6 +168,31 @@ ggsave("./figs/COMMAND_Figure3.tiff", # save in the /figs subfolder
 
 
 #### Junk code ####
+
+#### Figure 1. Total swordfish catch per year by gear group ###
+catch_year <- catch_swo %>% 
+  group_by(YearC, GearGrp) %>% 
+  summarise(total_Catch = sum(Catch))
+
+catch_year$GearGrp <- factor(catch_year$GearGrp, levels = c("LL", "HP", "GN", "BB", "PS", "OTHER"))
+
+ggplot(catch_year, aes(x = YearC, y = total_Catch, colour = GearGrp)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(name = "Time", breaks = c(seq(1950, 2016, 5))) +
+  scale_y_continuous(name = "Catch (t)") +
+  scale_colour_brewer(name = "Gear type", palette = "Dark2") +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14),
+        axis.text = element_text(size = 10),
+        legend.title = element_blank())
+
+ggsave("./figs/COMMAND_Figure1.tiff", # save in the /plots subfolder
+       dpi=300, #300 DPI
+       width = 20, height = 12, #SELECT WIDTH AND HEIGHT
+       device = "tiff", #export as tiff
+       compression = "lzw",
+       units = "cm")
 
 ## 1.0 Visualize catch (t) over time
 ggplot(catch_swo, aes(x = YearC, y = Catch, colour = GearGrp)) +
